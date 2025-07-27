@@ -88,18 +88,51 @@ const isAstro = isAstroStory(m)
 
 <StoryPage story={'${route.props.story}'} hasSidebar={${route.props.hasSidebar}}>
   {
-    (({...m['${route.story.name}']}?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
-      const Decorator = decoratorFn()
+    ([m['${route.story.name}']?.render].map(F => {
+      return F !== undefined 
+        ? isAstro
+          ? (<F>
+              {
+                ((m['${route.story.name}']?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
+                  const Decorator = decoratorFn()
 
-      return (
-          <Decorator>
-            {currentTree}
-          </Decorator>
-        )
-    }, isAstro
-      ? (<m.default.component { ...m['${route.story.name}']?.args } />)
-      : (<m.default.component { ...m['${route.story.name}']?.args } client:load />)
-    ))
+                  return (
+                      <Decorator>
+                        {currentTree}
+                      </Decorator>
+                    )
+                  }, (<m.default.component { ...m['${route.story.name}']?.args } />)
+                ))
+              }
+          </F>)
+          : (<F client:load>
+              {
+                ((m['${route.story.name}']?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
+                  const Decorator = decoratorFn()
+
+                  return (
+                      <Decorator>
+                        {currentTree}
+                      </Decorator>
+                    )
+                  }, (<m.default.component { ...m['${route.story.name}']?.args } />)
+                ))
+              }
+          </F>)
+        : (({...m['${route.story.name}']}?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
+              const Decorator = decoratorFn()
+
+              return (
+                  <Decorator>
+                    {currentTree}
+                  </Decorator>
+                )
+            }, isAstro
+              ? (<m.default.component { ...m['${route.story.name}']?.args } />)
+              : (<m.default.component { ...m['${route.story.name}']?.args } client:load />)
+            )
+          )
+      }))
   }
 </StoryPage>
 `.trim()

@@ -1,0 +1,24 @@
+{
+  "name": "example-custom-render",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Astrobook example",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.0",
+    "astro": "^5.11.0",
+    "astrobook": "*",
+    "preact": "^10.26.9"
+  },
+  "stackblitz": {
+    "installDependencies": false,
+    "startCommand": "pnpm install && pnpm run dev"
+  }
+}
