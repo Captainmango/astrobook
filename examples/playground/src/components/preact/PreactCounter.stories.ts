@@ -1,5 +1,6 @@
 import { GreenBorderDecorator } from '../decorators/JsxDecorator'
 import RedBorderDecorator from '../decorators/RedBorderDecorator.astro'
+import BlueBorderDecorator from './ClientJsxDecorator'
 
 import { PreactCounter, type PreactCounterProps } from './PreactCounter'
 
@@ -21,7 +22,10 @@ export const RedBorder = {
   args: {
     step: 1,
   } satisfies PreactCounterProps,
-  decorators: [() => RedBorderDecorator],
+  decorators: [() => GreenBorderDecorator],
+  render: {
+    component: BlueBorderDecorator
+  }
 }
 
 export const GreenBorder = {
