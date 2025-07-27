@@ -88,10 +88,10 @@ const isAstro = isAstroStory(m)
 
 <StoryPage story={'${route.props.story}'} hasSidebar={${route.props.hasSidebar}}>
   {
-    ([m['${route.story.name}']?.render].map(F => {
-      return F !== undefined 
+    ([m['${route.story.name}']?.render].map(Render => {
+      return Render !== undefined 
         ? isAstro
-          ? (<F>
+          ? (<Render.component { ...Render.props }>
               {
                 ((m['${route.story.name}']?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
                   const Decorator = decoratorFn()
@@ -104,8 +104,8 @@ const isAstro = isAstroStory(m)
                   }, (<m.default.component { ...m['${route.story.name}']?.args } />)
                 ))
               }
-          </F>)
-          : (<F client:load>
+          </Render>)
+          : (<Render.component { ...Render.props } client:load>
               {
                 ((m['${route.story.name}']?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
                   const Decorator = decoratorFn()
@@ -118,7 +118,7 @@ const isAstro = isAstroStory(m)
                   }, (<m.default.component { ...m['${route.story.name}']?.args } />)
                 ))
               }
-          </F>)
+          </Render>)
         : (({...m['${route.story.name}']}?.decorators || []).slice().reverse().reduce((currentTree, decoratorFn) => {
               const Decorator = decoratorFn()
 
