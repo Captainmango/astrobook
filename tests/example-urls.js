@@ -5,5 +5,5 @@ export const EXAMPLE_URLS = /** @type {const} */ ({
   'example-unocss': 'http://localhost:4303',
   'example-tailwindcss': 'http://localhost:4304',
   'example-pandacss': 'http://localhost:4309',
-  'example-custom-render': 'http://localhost:4306'
+  'example-custom-render': 'http://localhost:4306',
 })
